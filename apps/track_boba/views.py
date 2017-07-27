@@ -5,10 +5,14 @@ from django.contrib import messages
 from .models import *
 from django.core import serializers
 import json
+from .yelp import *
 
 # Create your views here.
 def dashboard(request):
-	return render(request, 'track_boba/index.html')
+	context = {
+		'boba_places': BobaPlaces.objects.all()
+	}
+	return render(request, 'track_boba/index.html', context)
 
 def index(request):
 	return render(request, 'track_boba/login.html')
@@ -42,7 +46,16 @@ def addplace(request):
 	return HttpResponse('Hello')
 
 def getall(request):
-	boba = BobaPlaces.objects.all()
-	return HttpResponse(serializers.serialize("json", boba), content_type='application/json')
+	print "hello"
+	boba = query_api("boba", "San Jose")
+	print boba
+	boba = json.dumps(boba)
+	return HttpResponse(boba)
 
-
+def profile(request, user_id):
+	context = {
+		"user": Users.objects.get(id=request.session['user_id']),
+		"places": TimesDrugged.objects.filter(user_id = request.session['user_id']),
+		"friends": Friendslist.objects.filter(users_id = request.session['user_id'])
+	}
+	return render(request, 'track_boba/user_profile.html', context)
