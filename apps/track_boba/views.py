@@ -47,7 +47,7 @@ def addplace(request):
 
 def getall(request):
 	print "hello"
-	boba = query_api("boba", "San Jose")
+	boba = query_api("boba", request.POST['city'])
 	print boba
 	boba = json.dumps(boba)
 	return HttpResponse(boba)
