@@ -6,11 +6,14 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'track_boba/css/style_login.css'%}"> 
 </head>
 <body>
+<div class="container">
+{% load static %}
+<img src="{% static "track_boba/imgs/milktea.jpg" %}" alt="My image"/>
 <h1>Welcome!</h1>
 {%for message in messages%}
 	<h3 class="error {{messages.tags}}">{{message}}</h3>
 {%endfor%}
-<div>
+<div class="register">
 	<h3>Register</h3>
 	<form action="/register" method="POST">
 		{%csrf_token%}
@@ -29,6 +32,7 @@
 		<p>Password: <input type="password" name="pass"></p>
 		<input type="submit" value="Login">
 	</form>
+</div>
 </div>
 </body>
 </html>

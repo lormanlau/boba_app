@@ -1,5 +1,22 @@
 *{
-    background: gray;
     font-family: sans-serif;
-    border-style: solid;
+}
+
+h1 {
+    font-family: 'Architects Daughter';font-size: 40px;
+    text-align: center;
+}
+
+div {
+    display: inline-block;
+}
+
+#login {
+    vertical-align: top;
+    margin-left: 35px;
+}
+
+input {
+    float: right;
+    margin-left: 18px;
 }
