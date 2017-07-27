@@ -4,16 +4,15 @@
 	<title>Welcome</title>
 	 {%load static%}
 	<link rel="stylesheet" type="text/css" href="{% static 'track_boba/css/style_login.css'%}"> 
+	<link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
 </head>
 <body>
-<div class="container">
-{% load static %}
-<img src="{% static "track_boba/imgs/milktea.jpg" %}" alt="My image"/>
-<h1>Welcome!</h1>
+
+<h1>Boba Application</h1>
 {%for message in messages%}
 	<h3 class="error {{messages.tags}}">{{message}}</h3>
 {%endfor%}
-<div class="register">
+<div id="register">
 	<h3>Register</h3>
 	<form action="/register" method="POST">
 		{%csrf_token%}
@@ -24,7 +23,7 @@
 		<input type="submit" value="Register">
 	</form>
 </div>
-<div>
+<div id="login">
 	<h3>Login</h3>
 	<form action="/login" method="POST">
 		{%csrf_token%}
