@@ -17,11 +17,20 @@ def dashboard(request):
 def index(request):
 	return render(request, 'track_boba/login.html')
 
+def signin(request):
+	context = {
+		'type': False
+	}
+	return render(request, 'track_boba/login.html', context)
+
+def reg(request):
+	context = {
+		'type': True
+	}
+	return render(request, 'track_boba/login.html', context)
+
 def register(request):
 	if request.method == "POST":
-		context = {
-        'type' : True
-    	}
 		errors = Users.objects.validate(request.POST)
 		if errors:
 			for tags,error in errors.iteritems():
@@ -47,7 +56,7 @@ def addplace(request):
 
 def getall(request):
 	print "hello"
-	boba = query_api("boba", "San Jose")
+	boba = query_api("boba", request.POST['city'])
 	print boba
 	boba = json.dumps(boba)
 	return HttpResponse(boba)
@@ -56,6 +65,6 @@ def profile(request, user_id):
 	context = {
 		"user": Users.objects.get(id=request.session['user_id']),
 		"places": TimesDrugged.objects.filter(user_id = request.session['user_id']),
-		"friends": Friendslist.objects.filter(users_id = request.session['user_id'])
+		"friends": Friendslist.objects.filter(user_friend_id = request.session['user_id'])
 	}
 	return render(request, 'track_boba/user_profile.html', context)

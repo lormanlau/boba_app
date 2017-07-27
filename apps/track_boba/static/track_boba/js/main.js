@@ -6,7 +6,9 @@ $('form').submit(function(form_data){
 		data: $(this).serialize(),
 		success: function(data) {
 			data = JSON.parse(data)
-			console.log(data.name);
+			for ( var boba in data.businesses){
+				$('#boba_places').append('<tr><td>'+data.businesses[boba].name+'</td></tr>')
+			}
 		}
 	});
 	

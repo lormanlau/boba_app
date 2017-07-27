@@ -54,7 +54,7 @@ GRANT_TYPE = 'client_credentials'
 # Defaults for our simple example.
 DEFAULT_TERM = 'dinner'
 DEFAULT_LOCATION = 'San Francisco, CA'
-SEARCH_LIMIT = 3
+SEARCH_LIMIT = 10
 
 
 def obtain_bearer_token(host, path):
@@ -148,6 +148,8 @@ def query_api(term, location):
 
     response = search(bearer_token, term, location)
 
+    return response
+
     businesses = response.get('businesses')
 
     if not businesses:
@@ -164,7 +166,7 @@ def query_api(term, location):
     print(u'Result for business "{0}" found:'.format(business_id))
     pprint.pprint(response, indent=2)
 
-    return response
+    
 
 
 def main():
