@@ -5,6 +5,7 @@ urlpatterns = [
 	url(r'^$', views.index),
 	url(r'^dashboard$', views.dashboard),
 	url(r'^addplace$', views.addplace),
-	url(r'^register$', views.register),
+	url(r'^register/$', views.register),
+	url(r'^login$', views.dashboard),
 	url(r'^getall.json$', views.getall),
 ]

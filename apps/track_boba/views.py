@@ -15,6 +15,9 @@ def index(request):
 
 def register(request):
 	if request.method == "POST":
+		context = {
+        'type' : True
+    	}
 		errors = Users.objects.validate(request.POST)
 		if errors:
 			for tags,error in errors.iteritems():
