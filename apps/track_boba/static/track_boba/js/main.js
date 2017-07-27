@@ -2,7 +2,7 @@ $('form').submit(function(form_data){
 	form_data.preventDefault();
 	$.ajax({
 		url:'/getall',
-		method: "POST",
+		method:'POST',
 		data: $(this).serialize(),
 		success: function(data) {
 			data = JSON.parse(data)
@@ -11,14 +11,17 @@ $('form').submit(function(form_data){
 			}
 		}
 	});
-	
 });
 
 function getLocation(pos){
 	$.ajax({
 		url:'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + pos['lat'] + ',' + pos['lng'] + '&key=AIzaSyD6JvfyfYbeSNIGmjjAVQ_94Aq63WYorhY',
 		success:function(data){
-			$('#city').val(data.results[3].formatted_address)
+			$('#lat').val(pos['lat']);
+			$('#lng').val(pos['lng']);
+			$('#city').val(data.results[3].formatted_address);
+			console.log(pos['lat']);
+			console.log(pos['lng']);
 			console.log(data.results[3].formatted_address);
 		}
 	});
@@ -48,8 +51,8 @@ function initMap(){
 	var options = {
 			zoom:15,
 			center:{
-				lat:37.7749,
-				lng:-122.4194
+				lat:{{lat}}},
+				lng:{{lng}}
 			}
 		}
 	var map = new google.maps.Map(document.getElementById('map'), options);

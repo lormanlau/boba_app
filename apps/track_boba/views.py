@@ -17,6 +17,8 @@ def dashboard(request):
 def index(request):
 	return render(request, 'track_boba/login.html')
 
+
+
 def signin(request):
 	context = {
 		'type': False
