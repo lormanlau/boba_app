@@ -22,7 +22,7 @@
 			<input type="submit" value="Register">
 		</form>
 	</div>
-<p><a href='/register'>Already have an account? Login</a></p>
+<p><a href='/signin'>Already have an account? Login</a></p>
 {% else %}
 	<div id="login">
 		<h1>Login</h1>
@@ -33,11 +33,11 @@
 			<input type="submit" value="Login">
 		</form>
 	<br>
+	<p><a href='/reg'>Do not have an account? Register.</a></p>
 {% endif %}
 	</div>
 {% load static from staticfiles %}
 	<img src="{% static "track_boba/imgs/boba.jpg" %}" alt="Hi!"/>
-	<p><a href='/register'>Do not have an account? Register.</a></p>
 	</div>
 </body>
 </html>
