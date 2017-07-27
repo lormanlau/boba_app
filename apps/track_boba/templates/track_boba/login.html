@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<h1>Boba Application</h1>
-{%for message in messages%}
+<h1>BobaLicious</h1>
+<!--{%for message in messages%}
 	<h3 class="error {{messages.tags}}">{{message}}</h3>
 {%endfor%}
 <div id="register">
@@ -32,6 +32,76 @@
 		<input type="submit" value="Login">
 	</form>
 </div>
-</div>
+</div>-->
+
+
+
+{% if type %}
+    <div class='container'>
+        <div class='col'>
+            <h1>Register</h1>
+        </div>
+        <div class='row'>
+            <div class='col'>
+                <form action='/create/' method='post'>
+                    {% csrf_token %}
+                    <div class='form-group'>
+                        <label for='email'>Email Address:</label>
+                        <input name='email' type='email' class='form-control' id='email' placeholder='Email'>
+                    </div>
+                    <div class='form-group'>
+                        <label for='first_name'>First Name:</label>
+                        <input name='first_name' type='text' class='form-control' id='first_name' placeholder='First Name'>
+                    </div>
+                    <div class='form-group'>
+                        <label for='last_name'>Last Name:</label>
+                        <input name='last_name' type='text' class='form-control' id='Last_name' placeholder='Last Name'>
+                    </div>
+                    <div class='form-group'>
+                        <label for='password'>Password:</label>
+                        <input name='password' type='password' class='form-control' id='password' placeholder='Password'>
+                    </div>
+                    <div class='form-group'>
+                        <label for='confirm'>Confirm Password:</label>
+                        <input name='password_confirmation' type='password' class='form-control' id='confirm' placeholder='Confirm Password'>
+                    </div>
+                    <div class='form-group'>
+                        <label for='user_level'>User Level:</label>
+                        <input name='user_level' type='number' class='form-control' id='user_level' placeholder='User Level'>
+                    </div>
+                    <input class="btn btn-success" type="submit" value="Register">
+                </form>
+            </div>
+        </div>
+        <p><a href='/index'>Already have an account? Login</a></p>
+    </div>
+    {% else %}
+    <div class='container'>
+        <div class='col'>
+            <h1>Sign In</h1>
+        </div>
+        <div class='row'>
+            <div class='col'>
+                <form action='/login/' method='post'>
+                    {% csrf_token %}
+                    <div class='form-group'>
+                        <label for='email'>Email Address:</label>
+                        <input name='email' type='email' class='form-control' id='email' placeholder='Email'>
+                    </div>
+                    <div class='form-group'>
+                        <label for='password'>Password:</label>
+                        <input name='password' type='password' class='form-control' id='password' placeholder='Password'>
+                    </div>
+                    <input class="btn btn-success" type="submit" value="Sign In">
+                </form>
+            </div>
+        </div>
+        <p><a href='/index'>Do not have an account? Register.</a></p>
+    </div>
+    {% endif %}
+
+    
+
+
 </body>
 </html>
