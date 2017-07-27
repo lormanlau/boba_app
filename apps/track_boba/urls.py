@@ -9,5 +9,7 @@ urlpatterns = [
 	url(r'^login$', views.dashboard),
 	url(r'^getall', views.getall),
 	url(r'^profile/(?P<user_id>\d+)$', views.profile),
+	url(r'^signin$', views.signin),
+	url(r'^reg$', views.reg),
 
 ]
