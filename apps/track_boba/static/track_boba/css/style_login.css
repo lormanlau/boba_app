@@ -7,23 +7,15 @@ h1 {
     text-align: center;
 }
 
-div {
-    display: inline-block;
-}
-
-#login {
-    vertical-align: top;
+#register {
     margin-left: 550px;
-    display: absolute;
     
 }
 input {
     float: right;
-    margin-left: 18px;
+     margin-right: 550px;
+    
 }
 img{
     margin-left: 380px;
-}
-a{
-  margin-left: 550px;  
 }
