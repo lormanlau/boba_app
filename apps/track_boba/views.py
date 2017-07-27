@@ -10,7 +10,8 @@ from .yelp import *
 # Create your views here.
 def dashboard(request):
 	context = {
-		'boba_places': BobaPlaces.objects.all()
+		'lat': Users.objects.get(id=request.session['user_id']).lat,
+		'lng': Users.objects.get(id=request.session['user_id']).lng
 	}
 	return render(request, 'track_boba/index.html', context)
 
@@ -70,3 +71,11 @@ def profile(request, user_id):
 		"friends": Friendslist.objects.filter(user_friend_id = request.session['user_id'])
 	}
 	return render(request, 'track_boba/user_profile.html', context)
+
+def logout(request):
+	user = Users.objects.get(id=request.session['user_id'])
+	user.lat = request.POST['lat']
+	user.lng = request.POST['lng']
+	user.save()
+	request.session['user_id'] = 0
+	return redirect('/')
