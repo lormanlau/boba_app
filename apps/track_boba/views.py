@@ -44,7 +44,7 @@ def register(request):
 				request.session['user_id'] = user.id
 				return redirect('/dashboard')
 	
-	return redirect('/')
+	return redirect('/', context)
 
 def addplace(request):
 	print request.POST['lat']
