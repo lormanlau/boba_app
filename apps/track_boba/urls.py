@@ -11,5 +11,6 @@ urlpatterns = [
 	url(r'^profile/(?P<user_id>\d+)$', views.profile),
 	url(r'^signin$', views.signin),
 	url(r'^reg$', views.reg),
+	url(r'^logout$', views.logout),
 
 ]

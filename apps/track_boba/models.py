@@ -20,6 +20,8 @@ class Users(models.Model):
 	email = models.EmailField()
 	name = models.CharField(max_length=255)
 	password = models.CharField(max_length=255)
+	lat = models.FloatField(null = True)
+	lng = models.FloatField(null = True)
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
 	objects = UsersManager()
