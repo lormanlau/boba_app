@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import *
 from django.core import serializers
 import json
+from .yelp import *
 
 # Create your views here.
 def dashboard(request):
@@ -39,7 +40,10 @@ def addplace(request):
 	return HttpResponse('Hello')
 
 def getall(request):
-	boba = BobaPlaces.objects.all()
-	return HttpResponse(serializers.serialize("json", boba), content_type='application/json')
+	print "hello"
+	boba = query_api("boba", "San Jose")
+	print boba
+	boba = json.dumps(boba)
+	return HttpResponse(boba)
 
 
