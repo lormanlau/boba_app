@@ -6,21 +6,16 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'track_boba/css/style_index.css'%}">
 </head>
 <body>
+
 	<a href="/profile/{{request.session.user_id}}">Your Profile</a>
 	<h1>Boba Tracker App</h1>
 	<div id="map"></div>
 	<form>
 		{%csrf_token%}
-		Name of Boba Place: <input type="text" name="name">
-		<input type="hidden" name="lng" id="lng">
-		<input type="hidden" name="lat" id="lat">
+		Click to find boba places:
+		<input type="hidden" name="city" id="city">
 		<input type="Submit" value="Add Place">
 	</form>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="{% static 'track_boba/js/main.js'%}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATUPsfY3MunXxd2f8nk2x0hFiJuq_bUKg&callback=initMap"
-	async defer></script>
-	
 	<!--placeholder for for loop - listed boba places in the area  -->
 	<h3>Places for a quick fix</h3>
 	<table id="boba_places">
@@ -34,6 +29,9 @@
 			</tr>
 		{% endfor %}
 	</table>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static 'track_boba/js/main.js'%}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6JvfyfYbeSNIGmjjAVQ_94Aq63WYorhY&callback=initMap"
+    async defer></script>
 </body>
 </html>
