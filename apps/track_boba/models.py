@@ -37,4 +37,10 @@ class TimesDrugged(models.Model):
 	timesDrugged = models.IntegerField()
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
+
+class Friendslist(models.Model):
+	created_at = models.DateTimeField(auto_now_add = True)
+	updated_at = models.DateTimeField(auto_now = True)
+	druggie = models.ForeignKey(BobaPlaces)
+	user_friend = models.ForeignKey(Users, related_name="friend")
 		
