@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Boba Tracker</title>
+	<style type="text/css">
+		#map {
+			height: 75vh;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+<h1>Boba Tracker App</h1>
+<div id="map"></div>
+<form>
+	{%csrf_token%}
+	Name of Boba Place: <input type="text" name="name">
+	<input type="hidden" name="lng" id="lng">
+	<input type="hidden" name="lat" id="lat">
+	<input type="Submit" value="Add Place">
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$.ajax({
+	url:'/getall.json',
+	success: function(hello) {
+		console.log(hello);
+	}
+});
+var currentLocation;
+	function initMap(){
+		var options = {
+				zoom:15,
+				center:{
+					lat:37.7749,
+					lng:-122.4194
+				}
+			}
+		var map = new google.maps.Map(document.getElementById('map'), options);
+
+		var marker = new google.maps.Marker({
+			position: {
+				lat: 37.3875545,
+				lng: -121.8828977
+			},
+			map: map
+		})
+		
+		//gets users location
+		if (navigator.geolocation) {
+        	navigator.geolocation.getCurrentPosition(function(position) {
+	            var pos = {
+	              	lat: position.coords.latitude,
+	              	lng: position.coords.longitude
+	            };
+            	map.setCenter(pos);
+            	currentLocation = pos;
+          	}, function() {
+            	handleLocationError(true, map.getCenter());
+          	});
+        } else {
+          	// Browser doesn't support Geolocation
+          	handleLocationError(false, map.getCenter());
+        }
+
+	}
+	$('form').submit(function(){
+		$('#lat').val(currentLocation['lat']);
+		$('#lng').val(currentLocation['lng']);
+		console.log($(this).serialize());
+		$.ajax({
+			url:'/addplace',
+			method:'post',
+			data: $(this).serialize()
+			});
+	});
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATUPsfY3MunXxd2f8nk2x0hFiJuq_bUKg&callback=initMap"
+    async defer></script>
+</body>
+</html>
