@@ -1,3 +1,6 @@
+*{
+    font-family: 'Architects Daughter';
+}
 .container{
     width: 975px;
     height: auto;
@@ -10,10 +13,17 @@
 	width: 700px;
 	display: inline-block;
 
+
 }
 .box2{
 	
 	width: 500px;
 	display: inline-block;
 	vertical-align: top;
+}
+
+a {
+	float: right;
+	text-decoration: none;
+	margin-left: 6px;
 }
