@@ -81,7 +81,7 @@ function placeMarker(latitude, longitude, map) {
         map: map
     });
 }
-$(document).on('click', 'a', function(e){
+$(document).on('click', '#boba_places a', function(e){
 	e.preventDefault();
 	lats = $(this).attr('data-lat');
 	lngs = $(this).attr('data-lng');
