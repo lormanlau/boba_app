@@ -1,4 +1,16 @@
 #map {
-	height: 75vh;
+	height: 95vh;
 	width: 100%;
+}
+.box{
+	
+	width: 700px;
+	display: inline-block;
+
+}
+.box2{
+	
+	width: 500px;
+	display: inline-block;
+	vertical-align: top;
 }
