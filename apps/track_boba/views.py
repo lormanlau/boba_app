@@ -65,19 +65,18 @@ def register(request):
 	
 	return redirect('/', context)
 
-def addplace(request):
-	print request.POST['lat']
-	print request.POST['lng']
-	print request.POST['name']
-	place = BobaPlaces.objects.create(lat = request.POST['lat'], lng = request.POST['lng'] , name = request.POST['name'])
-	TimesDrugged.objects.create(bobaplace = place, user = Users.objects.get(id = request.session['user_id']), timesDrugged = 1)
-	return HttpResponse('Hello')
+def giveLastPos(request):
+	user = Users.objects.get(id = request.session['user_id'])
+	return HttpResponse({lat:user.lat, lng:user.lng})
 
 def getall(request):
-	print "hello"
+	user = Users.objects.get(id = request.session['user_id'])
+	user.lat = request.POST['lat']
+	user.lng = request.POST['lng']
+	user.save()
 	boba = query_api("boba", request.POST['city'])
-	print boba
 	boba = json.dumps(boba)
+	print user.lat, user.lng
 	return HttpResponse(boba)
 
 def profile(request, user_id):
@@ -90,8 +89,5 @@ def profile(request, user_id):
 
 def logout(request):
 	user = Users.objects.get(id=request.session['user_id'])
-	user.lat = request.POST['lat']
-	user.lng = request.POST['lng']
-	user.save()
 	request.session['user_id'] = 0
 	return redirect('/')
