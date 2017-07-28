@@ -16,5 +16,7 @@
 }
 
 a {
-	text-align: right;
+	float: right;
+	text-decoration: none;
+	margin-left: 6px;
 }
