@@ -1,5 +1,9 @@
+* {
+	font-family: 'Architects Daughter'
+}
+
 .container{
-    width: 975px;
+    width: 1500px;;
     height: auto;
 }
 #map {
@@ -13,13 +17,32 @@
 }
 .box2{
 	
-	width: 500px;
+	width: 700px;
 	display: inline-block;
 	vertical-align: top;
+	margin-left: 10px;
 }
 
 a {
 	float: right;
 	text-decoration: none;
 	margin-left: 6px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+p {
+	font-size: 14pt;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid black;
+	padding: 15px;
+    text-align: left;
 }
