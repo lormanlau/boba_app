@@ -43,6 +43,6 @@ class TimesDrugged(models.Model):
 class Friendslist(models.Model):
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
-	druggie = models.ForeignKey(BobaPlaces)
 	user_friend = models.ForeignKey(Users, related_name="friend")
+	friend = models.ForeignKey(Users, null=True)
 		
