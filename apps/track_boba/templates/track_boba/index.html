@@ -6,27 +6,31 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'track_boba/css/style_index.css'%}">
 </head>
 <body>
-
-	<a href="/profile/{{request.session.user_id}}">Your Profile</a>
-	<h1>Boba Tracker App</h1>
-	<div id="map"></div>
-	<form>
-		{%csrf_token%}
-		Click to find boba places:
-		<input type="hidden" name="city" id="city">
-		<input type="Submit" value="Add Place">
-	</form>
+	<div class="box">
+		<div id="map"></div>
+	</div>
+	<div class="box2">
+		<!--{% load static from staticfiles %}
+		<img src="{% static "track_boba/imgs/comic.png" %}" alt="Hi!"/>-->
+		<a href="/profile/{{request.session.user_id}}">Your Profile</a>
+		<form>
+			{%csrf_token%}
+			Click to find boba places:
+			<input type="hidden" name="city" id="city">
+			<input type="Submit" value="Add Place">
+		</form>
 	<!--placeholder for for loop - listed boba places in the area  -->
-	<h3>Places for a quick fix</h3>
-	<table id="boba_places">
-		<tr>
-			<th>Business</th>
-			<th>Status</th>
-		</tr>
-	</table>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript" src="{% static 'track_boba/js/main.js'%}"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6JvfyfYbeSNIGmjjAVQ_94Aq63WYorhY&callback=initMap"
-    async defer></script>
+		<h3>Places for a quick fix</h3>
+		<table id="boba_places">
+			<tr>
+				<th>Business</th>
+				<th>Status</th>
+			</tr>
+		</table>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="{% static 'track_boba/js/main.js'%}"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6JvfyfYbeSNIGmjjAVQ_94Aq63WYorhY&callback=initMap"
+		async defer></script>
+	</div>
 </body>
 </html>
