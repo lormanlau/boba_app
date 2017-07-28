@@ -10,18 +10,37 @@ from .yelp import *
 # Create your views here.
 def dashboard(request):
 	context = {
-		'boba_places': BobaPlaces.objects.all()
+		'lat': Users.objects.get(id=request.session['user_id']).lat,
+		'lng': Users.objects.get(id=request.session['user_id']).lng
 	}
 	return render(request, 'track_boba/index.html', context)
 
 def index(request):
 	return render(request, 'track_boba/login.html')
 
+
+
 def signin(request):
 	context = {
 		'type': False
 	}
 	return render(request, 'track_boba/login.html', context)
+
+def login(request):
+	if request.method == 'POST':
+		user = Users.objects.filter(email = request.POST['email'])
+		if len(user) < 1:
+			messages.error(request, "Email does not exist", extra_tags="email")
+		else:
+			user = user.first()
+			if request.POST['pass'] != user.password:
+				messages.error(request, "Password does not match", extra_tags="password")
+			else:
+				request.session['user_id'] = user.id
+				request.session['lat'] = user.lat
+				request.session['lng'] = user.lng
+				return redirect('/dashboard')
+	return redirect('/')
 
 def reg(request):
 	context = {
@@ -68,3 +87,11 @@ def profile(request, user_id):
 		"friends": Friendslist.objects.filter(user_friend_id = request.session['user_id'])
 	}
 	return render(request, 'track_boba/user_profile.html', context)
+
+def logout(request):
+	user = Users.objects.get(id=request.session['user_id'])
+	user.lat = request.POST['lat']
+	user.lng = request.POST['lng']
+	user.save()
+	request.session['user_id'] = 0
+	return redirect('/')

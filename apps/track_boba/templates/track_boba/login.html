@@ -13,7 +13,7 @@
 {% if type %}
 	<h1>Register</h1>
 		<div id="register">
-			<form action="/login" method="POST">
+			<form action="/register" method="POST">
 				{%csrf_token%}
 				<p>Name: <input type="text" name="name"></p>
 				<p>Email: <input type="email" name="email"></p>
