@@ -4,23 +4,24 @@
 .container{
     width: 1500px;;
     height: auto;
+	background: #EBE8DE;
 }
 #map {
-	height: 95vh;
+	height: 110vh;
 	width: 100%;
 }
 .box{
 	width: 700px;
 	display: inline-block;
 
-
 }
 .box2{
 	
-	width: 700px;
+	width: 600px;
 	display: inline-block;
 	vertical-align: top;
 	margin-left: 10px;
+	background: #DFDFDF;
 }
 
 a {
@@ -39,10 +40,11 @@ p {
 
 table {
     border-collapse: collapse;
+	
 }
 
 table, th, td {
-	border: 1px solid black;
+	border: 3px solid #CBE6A3;
 	padding: 15px;
     text-align: left;
 }
