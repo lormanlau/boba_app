@@ -17,3 +17,9 @@
 	display: inline-block;
 	vertical-align: top;
 }
+
+a {
+	float: right;
+	text-decoration: none;
+	margin-left: 6px;
+}

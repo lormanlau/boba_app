@@ -12,8 +12,9 @@
 	<div class="box2">
 		<!--{% load static from staticfiles %}
 		<img src="{% static "track_boba/imgs/comic.png" %}" alt="Hi!"/>-->
-		<a href="/profile/{{request.session.user_id}}">Your Profile</a>
 		<a href="/logout">Logout</a>
+		<a href="/profile/{{request.session.user_id}}">Your Profile</a>
+		
 		<form>
 			{%csrf_token%}
 			Click to find boba places:
