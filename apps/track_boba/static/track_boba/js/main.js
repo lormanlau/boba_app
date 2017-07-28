@@ -1,17 +1,6 @@
-$('form').submit(function(form_data){
-	form_data.preventDefault();
-	$.ajax({
-		url:'/getall',
-		method:'POST',
-		data: $(this).serialize(),
-		success: function(data) {
-			data = JSON.parse(data)
-			for ( var boba in data.businesses){
-				$('#boba_places').append('<tr><td>'+data.businesses[boba].name+'</td></tr>')
-			}
-		}
-	});
-});
+var map;
+
+
 
 function getLocation(pos){
 	$.ajax({
@@ -46,17 +35,49 @@ function getCoords(map){
 		handleLocationError(false, map.getCenter());
 	}
 }
+
+function addMarkers(location_data){
+	var locations = []
+	for (var things in location_data){
+		locations[things] = new google.maps.Marker({
+			position: {
+				lat: parseFloat(location.latitude),
+				lng: parseFloat(location.longitude)
+			}
+		})
+		console.log(locations[things].position)
+		locations[things].setMap(map)
+	}
+}
+
+$('form').submit(function(form_data){
+	form_data.preventDefault();
+	$.ajax({
+		url:'/getall',
+		method:'POST',
+		data: $(this).serialize(),
+		success: function(data) {
+			data = JSON.parse(data)
+			addMarkers(data.businesses)
+			for (var boba in data.businesses){
+				$('#boba_places').append('<tr><td>'+data.businesses[boba].name+'</td></tr>')
+			}
+		}
+	});
+});
+
+
 var currentLocation;
 function initMap(){
 	var options = {
 			zoom:15,
 			center:{
-				lat:{{lat}}},
-				lng:{{lng}}
+				lat: 37.3875545,
+				lng: -121.8828977
 			}
 		}
-	var map = new google.maps.Map(document.getElementById('map'), options);
-
+	console.log(options);
+	map = new google.maps.Map(document.getElementById('map'), options);
 	var marker = new google.maps.Marker({
 		position: {
 			lat: 37.3875545,
@@ -64,6 +85,7 @@ function initMap(){
 		},
 		map: map
 	})
+	console.log(marker)
 	//gets users location
 	getCoords(map);
 }

@@ -26,6 +26,22 @@ def signin(request):
 	}
 	return render(request, 'track_boba/login.html', context)
 
+def login(request):
+	if request.method == 'POST':
+		user = Users.objects.filter(email = request.POST['email'])
+		if len(user) < 1:
+			messages.error(request, "Email does not exist", extra_tags="email")
+		else:
+			user = user.first()
+			if request.POST['pass'] != user.password:
+				messages.error(request, "Password does not match", extra_tags="password")
+			else:
+				request.session['user_id'] = user.id
+				request.session['lat'] = user.lat
+				request.session['lng'] = user.lng
+				return redirect('/dashboard')
+	return redirect('/')
+
 def reg(request):
 	context = {
 		'type': True

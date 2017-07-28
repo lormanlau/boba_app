@@ -14,8 +14,8 @@
 	<form>
 		{%csrf_token%}
 		Click to find boba places:
-		<input type="hidden" name="lat" id="lat">
-		<input type="hidden" name="lng" id="lng">
+		<input type="hidden" name="lat" id="lat" value={{lat}}>
+		<input type="hidden" name="lng" id="lng" value={{lng}}>
 		<input type="hidden" name="city" id="city">
 		<input type="Submit" value="Add Place">
 	</form>
