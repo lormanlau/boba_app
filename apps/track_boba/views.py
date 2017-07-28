@@ -67,7 +67,7 @@ def register(request):
 
 def giveLastPos(request):
 	user = Users.objects.get(id = request.session['user_id'])
-	return HttpResponse({lat:user.lat, lng:user.lng})
+	return HttpResponse('{lat:user.lat, lng:user.lng}')
 
 def getall(request):
 	user = Users.objects.get(id = request.session['user_id'])
@@ -78,6 +78,7 @@ def getall(request):
 	boba = json.dumps(boba)
 	print user.lat, user.lng
 	return HttpResponse(boba)
+
 
 def profile(request, user_id):
 	context = {

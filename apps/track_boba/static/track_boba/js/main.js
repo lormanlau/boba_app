@@ -45,7 +45,6 @@ function addMarkers(location_data){
 				lng: parseFloat(location.longitude)
 			}
 		})
-		console.log(locations[things].position)
 		locations[things].setMap(map)
 	}
 }
@@ -60,37 +59,56 @@ $('form').submit(function(form_data){
 			data = JSON.parse(data)
 			addMarkers(data.businesses)
 			for (var boba in data.businesses){
-				$('#boba_places').append('<tr><td><a href="">'+data.businesses[boba].name+'</a></td></tr>')
+				console.log(data.businesses[boba].coordinates);
+				if (!data.businesses[boba].is_closed){
+					var status = "Open"
+				}else {
+					var status = "Closed"
+				}
+				$('#boba_places').append('<tr><td><a data-lat='+ data.businesses[boba].coordinates.latitude +' data-lng=' + data.businesses[boba].coordinates.longitude + ' herf="">'+data.businesses[boba].name+'</a></td><td>'+ status +'</td></tr>')
+				placeMarker(data.businesses[boba].coordinates.latitude,data.businesses[boba].coordinates.longitude, map)
 			}
 		}
 	});
 });
 
+function placeMarker(latitude, longitude, map) {
+    var marker = new google.maps.Marker({
+        position: {
+        	lat: latitude,
+        	lng: longitude
+        }, 
+        map: map
+    });
+}
+$(document).on('click', 'a', function(e){
+	e.preventDefault();
+	lats = $(this).attr('data-lat');
+	lngs = $(this).attr('data-lng');
+	console.log(lats, lngs);
+	map.panTo({
+		lat: parseFloat(lats) ,
+		lng: parseFloat(lngs)
+	});
+});
 
 var currentLocation;
 function initMap(){
-	var pos;
-	$.ajax({
-		url:'/givepos',
-		success: function(data){
-			pos = data
-			console.log(pos);
-		}
-	});
 	var options = {
 			zoom:15,
-			center: pos
+			center: {
+				lat: 37.3875545,
+				lng: -121.8828977
+			}
 		}
-	console.log(options);
 	map = new google.maps.Map(document.getElementById('map'), options);
-	var marker = new google.maps.Marker({
-		position: {
-			lat: 37.3875545,
-			lng: -121.8828977
-		},
-		map: map
-	})
-	console.log(marker)
+	// var marker = new google.maps.Marker({
+	// 	position: {
+	// 		lat: 37.3875545,
+	// 		lng: -121.8828977
+	// 	},
+	// 	map: map
+	// })
 	//gets users location
 	getCoords(map);
 }

@@ -11,6 +11,5 @@ urlpatterns = [
 	url(r'^signin$', views.signin),
 	url(r'^reg$', views.reg),
 	url(r'^logout$', views.logout),
-	url(r'^givepos$', views.giveLastPos)
-
+	url(r'^givepos$', views.giveLastPos),
 ]
