@@ -6,9 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% load static %}
         <link href="{% static 'track_boba/css/user_profile.css' %}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
     </head>
     <body>
-        <a href="/dashboard">Home</a>
+        <nav>
+            <a href="/dashboard">Home</a>
+            <a href="/logout">Logout</a>
+        </nav>
         <h2>{{user.name}}</h2>
         <h4>Places you've visited:</h4>
         <table>
