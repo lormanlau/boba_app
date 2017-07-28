@@ -48,6 +48,7 @@ function addMarkers(location_data){
 		console.log(locations[things].position)
 		locations[things].setMap(map)
 	}
+	console.log(locations)
 }
 
 $('form').submit(function(form_data){

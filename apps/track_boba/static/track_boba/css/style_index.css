@@ -14,3 +14,7 @@
 	display: inline-block;
 	vertical-align: top;
 }
+
+a {
+	text-align: right;
+}
