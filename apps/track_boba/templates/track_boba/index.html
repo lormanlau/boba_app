@@ -23,15 +23,20 @@
 			<input type="hidden" name="lat" id="lat">
 			<input type="hidden" name="lng" id="lng">
 			<input type="hidden" name="city" id="city">
-			<input type="Submit" value="Add Place"></p>
+			<input type="Submit" value="Find Places"></p>
 		</form>
 	<!--placeholder for for loop - listed boba places in the area  -->
 		<h3>Places for a quick fix:</h3>
 		<table id="boba_places">
-			<tr>
-				<th>Business</th>
-				<th>Status</th>
-			</tr>
+			<thead>
+				<tr>
+					<th>Business</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody id="boba_append">
+				
+			</tbody>
 		</table>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script type="text/javascript" src="{% static 'track_boba/js/main.js'%}"></script>

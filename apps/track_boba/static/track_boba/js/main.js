@@ -57,6 +57,7 @@ $('form').submit(function(form_data){
 		method:'POST',
 		data: $(this).serialize(),
 		success: function(data) {
+			$('#boba_append').html(' ')
 			data = JSON.parse(data)
 			addMarkers(data.businesses)
 			for (var boba in data.businesses){
@@ -66,7 +67,7 @@ $('form').submit(function(form_data){
 				}else {
 					var status = "Closed"
 				}
-				$('#boba_places').append('<tr><td><a data-lat='+ data.businesses[boba].coordinates.latitude +' data-lng=' + data.businesses[boba].coordinates.longitude + ' herf="">'+data.businesses[boba].name+'</a></td><td>'+ status +'</td></tr>')
+				$('#boba_append').append('<tr><td><a data-lat='+ data.businesses[boba].coordinates.latitude +' data-lng=' + data.businesses[boba].coordinates.longitude + ' herf="">'+data.businesses[boba].name+'</a></td><td>'+ status +'</td></tr>')
 				placeMarker(data.businesses[boba].coordinates.latitude,data.businesses[boba].coordinates.longitude, map)
 			}
 		}
