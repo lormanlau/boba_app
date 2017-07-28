@@ -1,3 +1,7 @@
 * {
-    font-family: sans-serif
+	font-family: 'Architects Daughter';
+}
+nav {
+	display: inline-block;
+	margin-left: 90%; 
 }
