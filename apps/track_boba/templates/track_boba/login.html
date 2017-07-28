@@ -7,38 +7,38 @@
 	<link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
 </head>
 <body>
+	<div class="container">
 {%for message in messages%}
 	<h3 class="error {{messages.tags}}">{{message}}</h3>
 {%endfor%}
 {% if type %}
-	<h1>Register</h1>
 		<div id="register">
-			<form action="/register" method="POST">
-				{%csrf_token%}
-				<p>Name: <input type="text" name="name"></p>
-				<p>Email: <input type="email" name="email"></p>
-				<p>Password: <input type="password" name="pass"></p>
-				<p>Confirm PW: <input type="password" name="con_pass"></p>
-				<input type="submit" value="Register">
-			</form>
-		</div>
-		{% load static from staticfiles %}
-		<img src="{% static "track_boba/imgs/boba.jpg" %}" alt="Hi!"/>
-{% else %}
-	<h1>Login</h1>
+			<h1>Register</h1>
+				<form action="/register" method="POST">
+					{%csrf_token%}
+					<p>Name: <input type="text" name="name"></p>
+					<p>Email: <input type="email" name="email"></p>
+					<p>Password: <input type="password" name="pass"></p>
+					<p>Confirm PW: <input type="password" name="con_pass"></p>
+					<input id="register" type="submit" value="Register">
+				</form>
+			{% load static from staticfiles %}
+			<img src="{% static "track_boba/imgs/boba.jpg" %}" alt="Hi!"/>
+	{% else %}
 		<div id="register">
-			<form action="/login" method="POST">
-				{%csrf_token%}
-				<p>Email: <input type="email" name="email"></p>
-				<p>Password: <input type="password" name="pass"></p>
-				<input type="submit" value="Login">
-				<br>
-				<p><a href='/reg'>Do not have an account? Register!</a></p>
-			</form>
+			<h1>Login</h1>
+				<form action="/login" method="POST">
+					{%csrf_token%}
+					<p>Email: <input type="email" name="email"></p>
+					<p>Password: <input type="password" name="pass"></p>
+					<input id="login" type="submit" value="Login">
+				</form>
+			{% load static from staticfiles %}
+			<img src="{% static "track_boba/imgs/boba.jpg" %}" alt="Hi!"/>
+			<p id="hey"><a href='/reg'>Do not have an account? Register!</a></p>
+		{% endif %}
+			</div>
 		</div>
-		{% load static from staticfiles %}
-		<img src="{% static "track_boba/imgs/boba.jpg" %}" alt="Hi!"/>
-{% endif %}
-</div>
+	</div>
 </body>
 </html>
