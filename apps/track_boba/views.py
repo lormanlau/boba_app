@@ -6,6 +6,7 @@ from .models import *
 from django.core import serializers
 import json
 from .yelp import *
+from django.db.models import Q 
 
 # Create your views here.
 def dashboard(request):
@@ -81,12 +82,22 @@ def getall(request):
 
 
 def profile(request, user_id):
+	friend = request.POST.get('search', False)
+	search = Users.objects.filter(Q(name__icontains = friend)).exclude(friendslist__user_friend__id = request.session['user_id']).exclude(id = request.session['user_id'])
 	context = {
 		"user": Users.objects.get(id=request.session['user_id']),
 		"places": TimesDrugged.objects.filter(user_id = request.session['user_id']),
-		"friends": Friendslist.objects.filter(user_friend_id = request.session['user_id'])
+		"friends": Friendslist.objects.filter(user_friend_id = request.session['user_id']),
+		"searches": search
 	}
 	return render(request, 'track_boba/user_profile.html', context)
+
+def add_friend(request, user_id):
+	my_id = str(request.session['user_id'])
+	user = Users.objects.get(id = request.session['user_id'])
+	friend = Users.objects.get(id = user_id)
+	Friendslist.objects.create(user_friend = user, friend = friend)
+	return redirect('/profile/'+my_id)
 
 def logout(request):
 	user = Users.objects.get(id=request.session['user_id'])

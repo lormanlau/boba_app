@@ -28,9 +28,24 @@
             {% endfor %}
         </table>
 
+        <form action="/search/1" method="post">
+            {%csrf_token%}
+            <h4>Search for a friend: <input type="text" name="search"></h4>
+            <input type="submit" value="Search">
+        </form>
+
+        
+        {% for person in searches %}
+            <form action="/add_friend/{{person.id}}" method="post">
+            {%csrf_token%}
+                <p>{{person.name}} <input type="submit" value="add_friend"></p>
+            </form>
+        {% endfor %}
+        
+
         <h4>Your friends:</h4>
         {% for friend in friends %}
-            <p><a href="/profile/{{friend.user_friend.id}}"></a>{{friend.user_friend.name}}</p>
+            <p><a href="/profile/{{friend.user_friend.id}}"></a>{{friend.friend.name}}</p>
         {% endfor %}
     </body>
 </html>
