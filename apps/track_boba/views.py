@@ -19,14 +19,6 @@ def dashboard(request):
 def index(request):
 	return render(request, 'track_boba/login.html')
 
-
-
-def signin(request):
-	context = {
-		'type': False
-	}
-	return render(request, 'track_boba/login.html', context)
-
 def login(request):
 	if request.method == 'POST':
 		user = Users.objects.filter(email = request.POST['email'])
@@ -42,12 +34,6 @@ def login(request):
 				request.session['lng'] = user.lng
 				return redirect('/dashboard')
 	return redirect('/')
-
-def reg(request):
-	context = {
-		'type': True
-	}
-	return render(request, 'track_boba/login.html', context)
 
 def register(request):
 	if request.method == "POST":

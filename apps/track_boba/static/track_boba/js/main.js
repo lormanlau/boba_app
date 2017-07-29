@@ -1,5 +1,5 @@
 var map;
-
+var myCoords;
 function getCoords(map){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -7,6 +7,7 @@ function getCoords(map){
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
 			};
+			myCoords = pos;
 			map.setCenter(pos);
 			currentLocation = pos;
 			getLocation(pos);
@@ -47,11 +48,11 @@ function addMarkers(location_data){
 		})
 		locations[things].setMap(map)
 	}
-	console.log(locations)
 }
 
 $('form').submit(function(form_data){
 	form_data.preventDefault();
+	console.log($(this).serialize())
 	$.ajax({
 		url:'/getall',
 		method:'POST',
@@ -61,7 +62,6 @@ $('form').submit(function(form_data){
 			data = JSON.parse(data)
 			addMarkers(data.businesses)
 			for (var boba in data.businesses){
-				console.log(data.businesses[boba].coordinates);
 				if (!data.businesses[boba].is_closed){
 					var status = "Open"
 				}else {
@@ -73,6 +73,7 @@ $('form').submit(function(form_data){
 		}
 	});
 });
+
 
 function placeMarker(latitude, longitude, map) {
     var marker = new google.maps.Marker({
@@ -104,13 +105,5 @@ function initMap(){
 			}
 		}
 	map = new google.maps.Map(document.getElementById('map'), options);
-	// var marker = new google.maps.Marker({
-	// 	position: {
-	// 		lat: 37.3875545,
-	// 		lng: -121.8828977
-	// 	},
-	// 	map: map
-	// })
-	//gets users location
 	getCoords(map);
 }
