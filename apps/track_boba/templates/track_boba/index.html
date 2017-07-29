@@ -4,45 +4,51 @@
 	<title>Boba Tracker</title>
 	{%load static%}
 	<link rel="stylesheet" type="text/css" href="{% static 'track_boba/css/style_index.css'%}">
-	<link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
+	<!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="{%static 'track_boba/css/materialize.min.css'%}"  media="screen,projection"/>
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-	<div class="container">
-		<div class="box">
-			<div id="map"></div>
-		</div>
-	<div class="box2">
-		<!--{% load static from staticfiles %}
-		<img src="{% static "track_boba/imgs/comic.png" %}" alt="Hi!"/>-->
-		<a href="/logout">Logout</a>
+	<nav class="right-align">
 		<a href="/profile/{{request.session.user_id}}">Your Profile</a>
-		
-		<form>
-			{%csrf_token%}
-			<p>Click to find boba places:
-			<input type="hidden" name="lat" id="lat">
-			<input type="hidden" name="lng" id="lng">
-			<input type="hidden" name="city" id="city">
-			<input type="Submit" value="Find Places"></p>
-		</form>
-	<!--placeholder for for loop - listed boba places in the area  -->
-		<h3>Places for a quick fix:</h3>
-		<table id="boba_places">
-			<thead>
-				<tr>
-					<th>Business</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody id="boba_append">
-				
-			</tbody>
-		</table>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="{% static 'track_boba/js/main.js'%}"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6JvfyfYbeSNIGmjjAVQ_94Aq63WYorhY&callback=initMap"
-		async defer></script>
+		<a href="/logout">Logout</a>
+	</nav>
+	<div class="row">
+		<div id="map" class="col s6"></div>
+		<div id="box" class="col s6">
+			<!--{% load static from staticfiles %}
+			<img src="{% static "track_boba/imgs/comic.png" %}" alt="Hi!"/>-->
+			<form>
+				{%csrf_token%}
+				<p>Click to find boba places:
+				<input type="hidden" name="lat" id="lat">
+				<input type="hidden" name="lng" id="lng">
+				<input type="hidden" name="city" id="city">
+				<input type="Submit" value="Find Places"></p>
+			</form>
+		<!--placeholder for for loop - listed boba places in the area  -->
+			<h3>Places for a quick fix:</h3>
+			<table id="boba_places">
+				<thead>
+					<tr>
+						<th>Business</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody id="boba_append">
+					
+				</tbody>
+			</table>
+			
+		</div>
 	</div>
-	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="{% static 'track_boba/js/main.js'%}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6JvfyfYbeSNIGmjjAVQ_94Aq63WYorhY&callback=initMap" async defer></script>
+    <script type="text/javascript" src="{%static 'track_boba/js/materialize.min.js'%}"></script>
 </body>
 </html>

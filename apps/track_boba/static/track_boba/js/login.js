@@ -1,0 +1,12 @@
+$(function(){
+	$('#reg').click(function(e){
+		e.preventDefault()
+		$("#register").slideToggle();
+		$("#login").slideToggle();
+	});
+	$('#log').click(function(e){
+		e.preventDefault()
+		$("#register").slideToggle();
+		$("#login").slideToggle();
+	});
+});

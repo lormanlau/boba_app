@@ -1,12 +1,8 @@
-*{
-    font-family: 'Architects Daughter';
-}
-.container{
-    width: 1500px;;
-    height: auto;
-	background: #EBE8DE;
+nav {
+	padding-right: 1em;
 }
 #map {
+<<<<<<< HEAD
 	height: 110vh;
 	width: 100%;
 }
@@ -53,4 +49,5 @@ a {
 	float: right;
 	text-decoration: none;
 	margin-left: 6px;
+	height: 90vh;
 }
