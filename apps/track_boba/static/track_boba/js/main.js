@@ -11,6 +11,7 @@ function getCoords(map){
 			map.setCenter(pos);
 			currentLocation = pos;
 			getLocation(pos);
+			placeMarker(pos['lat'], pos['lng'], map);
 			}, function() {
 			handleLocationError(true, map.getCenter());
 		});
