@@ -1,11 +1,3 @@
-* {
-	font-family: 'Architects Daughter';
-}
-nav {
-	display: inline-block;
-	margin-left: 90%; 
-}
-html {
-	background: url('../imgs/milktea.jpg') no-repeat;
-	background-size: cover;
+nav	{
+	padding-right: 1em;
 }

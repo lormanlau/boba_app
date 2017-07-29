@@ -1,35 +1,3 @@
-*{
-    font-family: 'Architects Daughter';
-}
-.container{
-    width: 975px;
-    height: auto;
-}
-h1 {
-    font-family: 'Architects Daughter';font-size: 40px;
-    text-align: center;
-    padding-left: 420px;
-}
-form{
-    padding-left: 550px;
-    width: 300px;
-}    
-img{
-    margin-left: 380px;
-}
-input{
-    float: right;
-}
-#login{
-    box-shadow: 10px 10px 5px #888888;
-    width: 100px;
-    height: 30px;  
-    background: lightgray;
-    border-radius: 5px;
-}
-#register{
-
-}
-.link{
-    margin-left: 570px;
+#register {
+	display: none;
 }
