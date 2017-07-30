@@ -1,5 +1,7 @@
 var map;
 var myCoords;
+var currentLocation;
+
 function getCoords(map){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -96,7 +98,6 @@ $(document).on('click', '#boba_places a', function(e){
 	});
 });
 
-var currentLocation;
 function initMap(){
 	var options = {
 			zoom:15,

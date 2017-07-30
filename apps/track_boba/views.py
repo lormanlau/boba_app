@@ -4,6 +4,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from .models import *
 from django.core import serializers
+from django.http import JsonResponse
 import json
 from .yelp import *
 from django.db.models import Q 
@@ -52,10 +53,6 @@ def register(request):
 	
 	return redirect('/', context)
 
-def giveLastPos(request):
-	user = Users.objects.get(id = request.session['user_id'])
-	return HttpResponse('{lat:user.lat, lng:user.lng}')
-
 def getall(request):
 	user = Users.objects.get(id = request.session['user_id'])
 	user.lat = request.POST['lat']
@@ -68,15 +65,22 @@ def getall(request):
 
 
 def profile(request, user_id):
-	friend = request.POST.get('search', False)
-	search = Users.objects.filter(Q(name__icontains = friend)).exclude(friendslist__user_friend__id = request.session['user_id']).exclude(id = request.session['user_id'])
+	
 	context = {
 		"user": Users.objects.get(id=request.session['user_id']),
 		"places": TimesDrugged.objects.filter(user_id = request.session['user_id']),
 		"friends": Friendslist.objects.filter(user_friend_id = request.session['user_id']),
-		"searches": search
 	}
 	return render(request, 'track_boba/user_profile.html', context)
+
+def search(request):
+	if request.method == "POST":
+		friend = request.POST.get('search', False)
+		search = Users.objects.filter(Q(name__icontains = friend)).exclude(friendslist__user_friend__id = request.session['user_id']).exclude(id = request.session['user_id'])
+		print search
+		if len(search) < 1:
+			return HttpResponse("None Found")
+		return HttpResponse(serializers.serialize("json", search), content_type='application/json')
 
 def add_friend(request, user_id):
 	my_id = str(request.session['user_id'])

@@ -9,7 +9,6 @@ urlpatterns = [
 	url(r'^getall', views.getall),
 	url(r'^profile/(?P<user_id>\d+)$', views.profile),
 	url(r'^logout$', views.logout),
-	url(r'^givepos$', views.giveLastPos),
-	url(r'^search/(?P<user_id>\d+)$', views.profile),
+	url(r'^search$', views.search),
 	url(r'^add_friend/(?P<user_id>\d+)$', views.add_friend)
 ]

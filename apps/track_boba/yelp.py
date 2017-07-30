@@ -166,8 +166,15 @@ def query_api(term, location):
     print(u'Result for business "{0}" found:'.format(business_id))
     pprint.pprint(response, indent=2)
 
-    
-
+def query_lng(term, lat, lng):
+    bearer_token = obtain_bearer_token(API_HOST, TOKEN_PATH)
+    url_params = {
+        'term': term.replace(' ', '+'),
+        'latitude': lat,
+        'longitude': lng,
+        'limit': SEARCH_LIMIT
+    }
+    return request(API_HOST, SEARCH_PATH, bearer_token, url_params=url_params)
 
 def main():
     parser = argparse.ArgumentParser()
