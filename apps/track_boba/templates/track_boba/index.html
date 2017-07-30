@@ -19,17 +19,18 @@
 		<a href="/logout">Logout</a>
 	</nav>
 	<div class="row">
-		<div id="map" class="col s6"></div>
+		<p><div id="map" class="col s6"></div></p>
 		<div id="box" class="col s6">
 			<!--{% load static from staticfiles %}
 			<img src="{% static "track_boba/imgs/comic.png" %}" alt="Hi!"/>-->
 			<form>
 				{%csrf_token%}
-				<p>Click to find boba places:
-				<input type="hidden" name="lat" id="lat">
-				<input type="hidden" name="lng" id="lng">
-				<input type="hidden" name="city" id="city">
-				<input type="Submit" value="Find Places"></p>
+				<p>
+					<input type="hidden" name="lat" id="lat">
+					<input type="hidden" name="lng" id="lng">
+					<input type="hidden" name="city" id="city">
+					<input class="btn waves-effect waves-light" type="Submit" value="Find Places">
+				</p>
 			</form>
 		<!--placeholder for for loop - listed boba places in the area  -->
 			<h3>Places for a quick fix:</h3>
