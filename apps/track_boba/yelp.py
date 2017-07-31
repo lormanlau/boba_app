@@ -172,7 +172,7 @@ def query_lng(term, lat, lng):
         'term': term.replace(' ', '+'),
         'latitude': lat,
         'longitude': lng,
-        'limit': SEARCH_LIMIT
+        'limit': SEARCH_LIMIT,
     }
     return request(API_HOST, SEARCH_PATH, bearer_token, url_params=url_params)
 

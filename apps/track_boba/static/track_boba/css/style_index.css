@@ -1,6 +1,9 @@
 #map {
 	height: 90vh;
 }
+nav {
+	background-color: #26a69a;
+}
 nav a{
 	padding: 1em; 
 }

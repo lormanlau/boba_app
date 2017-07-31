@@ -3,7 +3,7 @@
 <head>
 	<title>Boba Tracker</title>
 	{%load static%}
-	<link rel="stylesheet" type="text/css" href="{% static 'track_boba/css/style_index.css'%}">
+	
 	<!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!--Import materialize.css-->
@@ -11,6 +11,7 @@
 
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'track_boba/css/style_index.css'%}">
 </head>
 <body>
 	<nav class="right-align">
@@ -23,7 +24,7 @@
 		<div id="box" class="col s6">
 			<!--{% load static from staticfiles %}
 			<img src="{% static "track_boba/imgs/comic.png" %}" alt="Hi!"/>-->
-			<form>
+			<form id="findplace">
 				{%csrf_token%}
 				<p>
 					<input type="hidden" name="lat" id="lat">
@@ -38,7 +39,7 @@
 				<thead>
 					<tr>
 						<th>Business</th>
-						<th>Status</th>
+						<th>Join Cult</th>
 					</tr>
 				</thead>
 				<tbody id="boba_append">
@@ -49,6 +50,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="{% static 'track_boba/js/join.js'%}"></script>
 	<script type="text/javascript" src="{% static 'track_boba/js/main.js'%}"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6JvfyfYbeSNIGmjjAVQ_94Aq63WYorhY&callback=initMap" async defer></script>
     <script type="text/javascript" src="{%static 'track_boba/js/materialize.min.js'%}"></script>

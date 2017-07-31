@@ -1,17 +1,14 @@
 var map;
-var myCoords;
-var currentLocation;
+var pos;
 
 function getCoords(map){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
-			var pos = {
+			pos = {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
 			};
-			myCoords = pos;
 			map.setCenter(pos);
-			currentLocation = pos;
 			getLocation(pos);
 			placeMarker(pos['lat'], pos['lng'], map);
 			}, function() {
@@ -38,8 +35,6 @@ function getLocation(pos){
 	});
 }
 
-
-
 function addMarkers(location_data){
 	var locations = []
 	for (var things in location_data){
@@ -53,7 +48,7 @@ function addMarkers(location_data){
 	}
 }
 
-$('form').submit(function(form_data){
+$('#findplace').submit(function(form_data){
 	form_data.preventDefault();
 	console.log($(this).serialize())
 	$.ajax({
@@ -65,18 +60,27 @@ $('form').submit(function(form_data){
 			data = JSON.parse(data)
 			addMarkers(data.businesses)
 			for (var boba in data.businesses){
-				if (!data.businesses[boba].is_closed){
-					var status = "Open"
-				}else {
-					var status = "Closed"
+				var bobajson = {
+					'latitude': data.businesses[boba].coordinates.latitude,
+					'longitude': data.businesses[boba].coordinates.longitude,
+					'name': data.businesses[boba].name,
 				}
-				$('#boba_append').append('<tr><td><a data-lat='+ data.businesses[boba].coordinates.latitude +' data-lng=' + data.businesses[boba].coordinates.longitude + ' herf="">'+data.businesses[boba].name+'</a></td><td>'+ status +'</td></tr>')
-				placeMarker(data.businesses[boba].coordinates.latitude,data.businesses[boba].coordinates.longitude, map)
+				$('#boba_append').append('<tr><td><a data-lat='+ bobajson.latitude +' data-lng=' + bobajson.longitude + ' herf="">'+ bobajson.name +'</a></td><td>' + createLocationForm(bobajson) + '</td></tr>')
+				placeMarker(bobajson.latitude,bobajson.longitude, map)
 			}
 		}
 	});
 });
-
+function createLocationForm(Json){
+	var tr = document.createElement('tr');
+	var form = document.createElement('form');
+	var submit = document.createElement('input');
+	$(submit).attr('class', 'join');
+	$(submit).attr('type', 'submit');
+	$(submit).attr('value', 'join');
+	form.appendChild(submit);
+	return form;
+}
 
 function placeMarker(latitude, longitude, map) {
     var marker = new google.maps.Marker({
@@ -87,6 +91,7 @@ function placeMarker(latitude, longitude, map) {
         map: map
     });
 }
+
 $(document).on('click', '#boba_places a', function(e){
 	e.preventDefault();
 	lats = $(this).attr('data-lat');

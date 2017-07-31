@@ -58,10 +58,13 @@ def getall(request):
 	user.lat = request.POST['lat']
 	user.lng = request.POST['lng']
 	user.save()
-	boba = query_api("boba", request.POST['city'])
-	boba = json.dumps(boba)
+	boba2 = query_lng("boba", request.POST['lat'], request.POST['lng'])
+	boba2 = json.dumps(boba2)
+	print boba2
+	# boba = query_api("boba", request.POST['city'])
+	# boba = json.dumps(boba)
 	print user.lat, user.lng
-	return HttpResponse(boba)
+	return HttpResponse(boba2)
 
 
 def profile(request, user_id):
@@ -93,3 +96,7 @@ def logout(request):
 	user = Users.objects.get(id=request.session['user_id'])
 	request.session['user_id'] = 0
 	return redirect('/')
+
+def addboba(request):
+	
+	return HttpResponse('Added')
